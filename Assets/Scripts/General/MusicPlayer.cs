@@ -28,11 +28,15 @@ public class MusicPlayer : MonoBehaviour
     {
         if(music && music.isActiveAndEnabled)
         {
-            music.Stop();
             try
             {
-                music.clip = clips[level];
-                music.Play();
+                AudioClip clip = clips[level];
+                if (music.clip != clip)
+                {
+                    music.Stop();
+                    music.clip = clip;
+                    music.Play();
+                }
             }
             catch
             {
